@@ -1,6 +1,10 @@
 # Dockerfile
 FROM ubuntu:20.04
 
+# Set non-interactive mode for tzdata
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
@@ -17,7 +21,8 @@ RUN apt-get update && \
     gcc-aarch64-linux-gnu \
     g++-aarch64-linux-gnu \
     git \
-    wget
+    wget \
+    tzdata
 
 # Set up cross-compile environment
 ENV CROSS_COMPILE=aarch64-linux-gnu-
