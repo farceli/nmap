@@ -6,6 +6,8 @@ RUN apt-get update && \
     build-essential \
     autoconf \
     automake \
+    libtool \
+    gettext \
     libpcre3-dev \
     libssl-dev \
     libssh2-1-dev \
