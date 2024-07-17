@@ -32,6 +32,9 @@ WORKDIR /nmap
 # Clone Nmap source code
 RUN git clone https://github.com/nmap/nmap.git .
 
+# Create necessary directories
+RUN mkdir -p tests example
+
 # Generate configure script
 RUN autoreconf -fi
 
