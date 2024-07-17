@@ -1,8 +1,11 @@
+# Dockerfile
 FROM ubuntu:20.04
 
 RUN apt-get update && \
     apt-get install -y \
     build-essential \
+    autoconf \
+    automake \
     libpcre3-dev \
     libssl-dev \
     libssh2-1-dev \
@@ -21,6 +24,9 @@ WORKDIR /nmap
 
 # Clone Nmap source code
 RUN git clone https://github.com/nmap/nmap.git .
+
+# Run autogen.sh to generate configure script
+RUN ./autogen.sh
 
 # Configure and build
 RUN ./configure --host=aarch64-linux-gnu --target=aarch64-linux-gnu
