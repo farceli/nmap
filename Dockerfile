@@ -25,9 +25,6 @@ WORKDIR /nmap
 # Clone Nmap source code
 RUN git clone https://github.com/nmap/nmap.git .
 
-# Run autogen.sh to generate configure script
-RUN ./autogen.sh
-
 # Configure and build
 RUN ./configure --host=aarch64-linux-gnu --target=aarch64-linux-gnu
 RUN make
