@@ -25,11 +25,17 @@ WORKDIR /nmap
 # Clone Nmap source code
 RUN git clone https://github.com/nmap/nmap.git .
 
+# Generate configure script
+RUN autoreconf -fi
+
 # Configure and build
 RUN ./configure --host=aarch64-linux-gnu --target=aarch64-linux-gnu
 RUN make
 
+# Create output directory
+RUN mkdir -p /nmap/output && chmod -R 777 /nmap/output
+
 # Install Nmap
-RUN make install
+RUN make install DESTDIR=/nmap/output
 
 CMD ["nmap", "--version"]
